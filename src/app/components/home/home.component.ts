@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 
   addToCart(productId) {
     if (this.userExists) {
-      // add to cart
+      this.router.navigate(['/profile']);
     }else {
       this.router.navigate(['/login']);
     }

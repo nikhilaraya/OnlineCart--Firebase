@@ -37,12 +37,12 @@ export class UserService {
 
   login(username: String, password: String) {
     this.options.withCredentials = true;
-    const cred = {
+    const body = {
       username: username,
       password: password
     };
-    console.log(cred.username + '----' + cred.password);
-    return this._http.post(this.baseUrl + '/api/login', cred)
+    console.log(body.username + '----' + body.password);
+    return this._http.post(this.baseUrl + '/api/login', body, this.options)
       .map((res: Response) => {
         return res.json();
       });
@@ -54,6 +54,7 @@ export class UserService {
         const user = res.json();
         if (user !== 0) {
           this.sharedService.user = user;
+          console.log(user.username + 'ikkadaaa');
           return true;
         } else {
           this.sharedService.user = '';
