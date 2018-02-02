@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <h1>Login</h1>
+
+
+  <h3>
+    <a [routerLink]="['/']">home</a>
+  </h3>
+
+  <form (ngSubmit)="login()" #f="ngForm">
+    <input type="text"
+           id="username"
+           class="form-control"
+           ngModel
+           placeholder="Alice"
+           #username="ngModel"
+           name="username"
+           required/>
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+      Please enter username!
+    </span>
+
+    <input type="password"
+           id="password"
+           class="form-control"
+           placeholder="qwerty"
+           #password="ngModel"
+           required
+           name="password"
+           ngModel/>
+    <span class="help-block" *ngIf="!password.valid && password.touched">
+      Please enter password!
+    </span>
+
+    <button class="btn btn-block btnStyle bg-primary"
+            type="submit"
+            [disabled]="!f.valid">Login
+    </button>
+  </form>
+</div>

@@ -9,10 +9,14 @@ const path = require('path');
 const http = require('http');
 const bodyParser = require('body-parser');
 const app = express();
+const passport = require('passport');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use(passport.initialize());
+app.use(passport.session());
+// -- Asgn 6
 
 
 
@@ -36,19 +40,20 @@ const port = process.env.PORT || '3100';
 app.set('port', port);
 
 
-// Create HTTP server
+// Create HTTP services
 const server = http.createServer(app);
 
-var serverSide = require("./server/test-mongodb/app");
-serverSide(app);
+//var serverSide = require("./server/test-mongodb/app");
+//serverSide(app);
 
-require('./todo/app')(app);
+require("./project/app")(app);
+
 
 // For Build: Catch all other routes and return the index file -- BUILDING
 app.get('*', function (req, res) {
   res.sendFile(path.join(__dirname, 'dist/index.html'));
 });
 
-server.listen( port , () => console.log('Running'));
+server.listen( port);
 
 

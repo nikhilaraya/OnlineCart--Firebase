@@ -1,0 +1,55 @@
+<div class="container-fluid">
+<h1>Register</h1>
+
+  <div *ngIf="errorFlag"
+       class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+
+  <form (ngSubmit)="register()" #f="ngForm">
+<input type="text"
+       id="username"
+       class="form-control"
+       ngModel
+       placeholder="Alice"
+       #username="ngModel"
+       name="username"
+       required/>
+    <span class="help-block" *ngIf="!username.valid && username.touched">
+      Please enter username!
+    </span>
+
+  <input type="password"
+         id="password"
+         class="form-control"
+         placeholder="qwerty"
+         #password="ngModel"
+         required
+         name="password"
+         ngModel/>
+    <span class="help-block" *ngIf="!password.valid && password.touched">
+      Please enter password!
+    </span>
+
+  <input type="password"
+         id="repassword"
+         class="form-control"
+         placeholder="qwerty"
+         #repassword="ngModel"
+         name="repassword"
+         required
+         ngModel/>
+    <span class="help-block" *ngIf="!repassword.valid && repassword.touched">
+      Please verify password!
+    </span>
+
+    <span class="help-block" *ngIf="password.value != repassword.value">
+      Passwords do not match
+    </span>
+
+    <button class="btn btn-block btnStyle bg-primary"
+            type="submit"
+            [disabled]="!f.valid">Register
+    </button>
+  </form>
+</div>
